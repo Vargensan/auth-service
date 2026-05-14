@@ -8,7 +8,7 @@ pluginManagement {
 
 }
 
-rootProject.name = 'AuthService'
+rootProject.name = 'auth-service'
 include 'auth-api'
 include 'auth-core'
 include 'auth-app'
