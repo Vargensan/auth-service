@@ -1,6 +1,7 @@
 package org.fix.bill.auth.core.domain.application.service.authentication;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.fix.bill.auth.core.domain.application.inbound.Registration;
 import org.fix.bill.auth.core.domain.application.outbound.VerificationTokenDataPublisher;
 import org.fix.bill.auth.core.domain.application.outbound.VerificationTokenDataRepository;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
+@Slf4j
 public class RegistrationService implements Registration {
 
     private final PasswordManager passwordManager;
@@ -60,8 +62,8 @@ public class RegistrationService implements Registration {
     private void requestActivation(AuthIdentity authIdentity) {
         VerificationTokenData verificationTokenData = getActivationRequiredEvent(authIdentity);
 
-        verificationTokenDataRepository.save(verificationTokenData);
         verificationTokenDataPublisher.publish(verificationTokenData);
+        verificationTokenDataRepository.save(verificationTokenData);
     }
 
 }
