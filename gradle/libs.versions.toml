@@ -1,0 +1,51 @@
+[versions]
+# Internal Libraries
+infrastructureVersion = "1.0-SNAPSHOT"
+
+# 3'rd Party Libraries
+jjwtVersion = "0.11.5"
+bouncyCastleVersion = "1.70"
+jakartaValidationVersion = "3.0.2"
+apacheHttpClientVersion = "4.5.14"
+jacksonVersion = "2.17.1"
+avroVersion = "1.12.0"
+kafkaAvroSerializerVersion = "8.1.1"
+
+# Plugin Versions
+springBootVersion="3.5.3"
+springDependencyManagementVersion="1.1.7"
+lombokVersion="8.14"
+
+[libraries]
+
+# Internal
+infrastructure-api = {module = "org.fix.bill:InfrastructureAPI", version.ref = "infrastructureVersion"}
+
+# External
+springBootBom = {module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBootVersion"}
+bouncy-castle = {module = "org.bouncycastle:bcprov-jdk15on", version.ref = "bouncyCastleVersion"}
+
+jjwt-api = {module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwtVersion"}
+jjwt-impl = {module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwtVersion"}
+jjwt-jackson = {module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwtVersion"}
+
+apache-http-client = {module = "org.apache.httpcomponents:httpclient", version.ref = "apacheHttpClientVersion"}
+
+jackson-databind =  {module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jacksonVersion"}
+jackson-annotations =  {module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jacksonVersion"}
+jackson-core =  {module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jacksonVersion"}
+
+jakarta-validation-api = {module = "jakarta.validation:jakarta.validation-api", version.ref = "jakartaValidationVersion"}
+
+kafka-avro-serializer = {module = "io.confluent:kafka-avro-serializer", version.ref = "kafkaAvroSerializerVersion"}
+avro = {module = "org.apache.avro:avro", version.ref = "avroVersion"}
+avro-tools = {module = "org.apache.avro:avro-tools", version.ref = "avroVersion"}
+
+[bundles]
+jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
+jackson = ["jackson-databind", "jackson-annotations", "jackson-core"]
+
+[plugins]
+spring-boot = {id = "org.springframework.boot", version.ref = "springBootVersion"}
+spring-dependancy-management = {id = "io.spring.dependency-management", version.ref = "springDependencyManagementVersion"}
+lombok = {id = "io.freefair.lombok", version.ref = "lombokVersion"}

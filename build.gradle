@@ -1,0 +1,99 @@
+plugins {
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.spring.dependancy.management) apply false
+    alias(libs.plugins.lombok) apply false
+    id 'java'
+}
+
+allprojects {
+
+    group = 'org.fix.bill'
+    version = '1.0-SNAPSHOT'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://packages.confluent.io/maven/" }
+        maven {
+            url = uri("https://repo.repsy.io/vargensan/maven-releases/")
+            credentials {
+                username = "vargensan"
+                password = "-confident-"
+            }
+        }
+        maven {
+            url = uri("https://repo.repsy.io/vargensan/maven-snapshots/")
+            credentials {
+                username = "vargensan"
+                password = "-confident-"
+            }
+        }
+
+    }
+}
+
+
+subprojects {
+
+    apply {
+        plugin('java')
+        plugin(libs.plugins.spring.dependancy.management.get().getPluginId())
+        plugin(libs.plugins.lombok.get().getPluginId())
+    }
+
+    dependencies {
+        implementation platform(libs.springBootBom)
+    }
+
+}
+
+project(":auth-api") {
+
+    apply {
+        plugin('maven-publish')
+    }
+
+    dependencies {
+        implementation libs.infrastructure.api
+    }
+
+}
+
+project(":auth-app") {
+
+    apply {
+        plugin(libs.plugins.spring.boot.get().getPluginId())
+    }
+
+    dependencies {
+        implementation project(":auth-api")
+        implementation project(":auth-entry")
+        implementation project(":auth-core")
+        implementation project(":auth-infrastructure")
+
+        implementation libs.kafka.avro.serializer
+    }
+}
+
+project(":auth-core") {
+
+}
+
+project(":auth-entry") {
+
+    dependencies {
+        implementation project(':auth-api')
+        implementation project(':auth-core')
+    }
+}
+
+project(":auth-infrastructure") {
+
+    dependencies {
+        implementation project(':auth-api')
+        implementation project(':auth-core')
+
+        implementation libs.infrastructure.api
+    }
+
+}

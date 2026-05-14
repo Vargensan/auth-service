@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: database/changelogs/001-create-verification-token-table.yml
+  - include:
+      file: database/changelogs/002-create-auth-identity-table.yml

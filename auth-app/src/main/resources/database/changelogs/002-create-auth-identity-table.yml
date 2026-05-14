@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-auth-identity-table
+      author: you
+      changes:
+        - createTable:
+            tableName: auth_identity
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password_hash
+                  type: VARCHAR(1000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_activated
+                  type: BOOLEAN
+        - addUniqueConstraint:
+            tableName: auth_identity
+            columnNames: email
+            constraintName: uq_auth_identity_email

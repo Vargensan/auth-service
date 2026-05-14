@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://auth-db:5432/authdb
+    username: authuser
+    password: authpass
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    properties:
+      schema:
+        registry:
+          url: http://schema-registry:8081
