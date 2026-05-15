@@ -20,10 +20,6 @@ resolving dependencies and providing configuration between other modules on a sp
 Module auth-infrastructure is responsible for providing implementation of interfaces defined in the auth-core module.
 It has concrete implementations and is bounded by a specific technology stack (Spring, PostgreSQL, etc.).
 
-
-This microservice at the moment CANT be run standalone without proper configuration. It is purposed to begin a small piece in system design. 
-It uses Kafka defined in the top-configuration-project layer.
-
 It is intended to be used with other microservices.
 It can be run as a standalone application, for testing purposes after some docker-compose file modification.
 
