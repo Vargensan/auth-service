@@ -14,21 +14,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
         maven { url "https://packages.confluent.io/maven/" }
-        maven {
-            url = uri("https://repo.repsy.io/vargensan/maven-releases/")
-            credentials {
-                username = "vargensan"
-                password = "-confident-"
-            }
-        }
-        maven {
-            url = uri("https://repo.repsy.io/vargensan/maven-snapshots/")
-            credentials {
-                username = "vargensan"
-                password = "-confident-"
-            }
-        }
-
     }
 }
 
@@ -51,10 +36,6 @@ project(":auth-api") {
 
     apply {
         plugin('maven-publish')
-    }
-
-    dependencies {
-        implementation libs.infrastructure.api
     }
 
 }
@@ -92,8 +73,6 @@ project(":auth-infrastructure") {
     dependencies {
         implementation project(':auth-api')
         implementation project(':auth-core')
-
-        implementation libs.infrastructure.api
     }
 
 }

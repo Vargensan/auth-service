@@ -1,6 +1,4 @@
 [versions]
-# Internal Libraries
-infrastructureVersion = "1.0-SNAPSHOT"
 
 # 3'rd Party Libraries
 jjwtVersion = "0.11.5"
@@ -17,9 +15,6 @@ springDependencyManagementVersion="1.1.7"
 lombokVersion="8.14"
 
 [libraries]
-
-# Internal
-infrastructure-api = {module = "org.fix.bill:InfrastructureAPI", version.ref = "infrastructureVersion"}
 
 # External
 springBootBom = {module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBootVersion"}
